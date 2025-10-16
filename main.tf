@@ -203,7 +203,6 @@ resource "null_resource" "docker-compose-up" {
 
     environment = {
       ENV         = var.env
-      DOCKER_HOST = "ssh://ec2-user@${aws_instance.my-handicapped-instance.public_dns}"
     }
   }
 }
