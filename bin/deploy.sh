@@ -35,9 +35,9 @@ cp $key.pub ~/.ssh/
 chmod 600 ~/.ssh/$key
 ssh-add ~/.ssh/$key
 
-#test connection
-ssh -l ec2-user $host docker system dial-stdio
-
+#make a tunnel
+ssh -fN -L 23750:127.0.0.1:23750 ec2-user@$host
+export DOCKER_HOST=tcp://127.0.0.1:23750
 
 export COMPOSE_PROJECT_NAME=$ENV
 docker compose -f docker-compose.yml -f docker-compose."$ENV".yml pull
