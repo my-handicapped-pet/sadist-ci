@@ -48,6 +48,6 @@ jobs:
       run: |
         set -x
         for repo in sadist-be sadist-blog sadist-ci sadist-fe sadist-proxy; do
-          ./bin/git-clone.sh ilyaukin/$repo
+          ./bin/git-clone.sh my-handicapped-pet/$repo
           ./bin/git-merge.sh $repo develop master
         done

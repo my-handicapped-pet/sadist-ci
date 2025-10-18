@@ -34,7 +34,7 @@ jobs:
     # Checks-out sadist-ci under $GITHUB_WORKSPACE
     - uses: actions/checkout@v2
       with:
-        repository: ilyaukin/sadist-ci
+        repository: my-handicapped-pet/sadist-ci
         token: ${{ secrets.ACCESS_TOKEN }}
 
     # Sets up docker certificates
