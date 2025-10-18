@@ -3,27 +3,27 @@
 locals {
   config = {
     webapp-flask = {
-      repo       = ["my-handicapped-peta/sadist-be", "my-handicapped-peta/sadist-fe"]
+      repo       = ["my-handicapped-pet/sadist-be", "my-handicapped-pet/sadist-fe"]
       dockerfile = "./sadist-be/Dockerfile-flask"
     }
     webapp-nginx = {
-      repo       = ["my-handicapped-peta/sadist-be"]
+      repo       = ["my-handicapped-pet/sadist-be"]
       dockerfile = "./sadist-be/Dockerfile-nginx"
     }
     certbot = {
-      repo       = ["my-handicapped-peta/sadist-be"]
+      repo       = ["my-handicapped-pet/sadist-be"]
       dockerfile = "./sadist-be/Dockerfile-certbot"
     }
     webapp-proxy = {
-      repo       = ["my-handicapped-peta/sadist-proxy"]
+      repo       = ["my-handicapped-pet/sadist-proxy"]
       dockerfile = "./sadist-proxy/Dockerfile-proxy"
     }
     blog-app = {
-      repo       = ["my-handicapped-peta/sadist-blog"]
+      repo       = ["my-handicapped-pet/sadist-blog"]
       dockerfile = "./sadist-blog/Dockerfile-blog"
     }
     blog-admin-app = {
-      repo       = ["my-handicapped-peta/sadist-blog"]
+      repo       = ["my-handicapped-pet/sadist-blog"]
       dockerfile = "./sadist-blog/Dockerfile-blog-admin"
     }
   }
