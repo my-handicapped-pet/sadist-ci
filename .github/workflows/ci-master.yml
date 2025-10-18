@@ -47,7 +47,7 @@ jobs:
     - name: Merge to master
       run: |
         set -x
-        for repo in sadist-be sadist-blog sadist-ci sadist-fe sadist-proxy; do
+        for repo in sadist-be sadist-blog sadist-ci sadist-fe sadist-proxy sadist-map; do
           ./bin/git-clone.sh my-handicapped-pet/$repo
           ./bin/git-merge.sh $repo develop master
         done

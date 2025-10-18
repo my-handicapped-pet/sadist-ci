@@ -9,6 +9,13 @@ services:
       - prod_certbot_www:/var/www/certbot/
       - prod_ssl_certs:/etc/letsencrypt/
 
+  mongo:
+    image: mongo
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: password
+
 volumes:
   prod_certbot_www:
     external: true

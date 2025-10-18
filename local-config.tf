@@ -18,6 +18,10 @@ locals {
       repo       = ["my-handicapped-pet/sadist-proxy"]
       dockerfile = "./sadist-proxy/Dockerfile-proxy"
     }
+    webapp-map = {
+      repo = ["my-handicapped-pet/sadist-map"]
+      dockerfile = "./sadist-map/Dockerfile-map"
+    }
     blog-app = {
       repo       = ["my-handicapped-pet/sadist-blog"]
       dockerfile = "./sadist-blog/Dockerfile-blog"
