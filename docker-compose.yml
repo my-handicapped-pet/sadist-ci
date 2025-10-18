@@ -20,6 +20,12 @@ services:
     environment:
       - ENV
 
+  map:
+    image: myhandicappedpet/webapp-map
+    restart: unless-stopped
+    environment:
+      - DATABASE_URL
+
   chrome1:
     image: alpeware/chrome-headless-trunk
     restart: unless-stopped
