@@ -7,12 +7,6 @@ if [ -z $ENV ]; then
   echo "Environment (\$ENV) must be set" >&2
   exit 1
 fi
-for f in blog.env mail.env mongodb.env; do
-  if [ ! -f $f ]; then
-    echo "$f file must exist" >&2
-    exit 1
-  fi
-done
 
 #parameters
 host=$1
@@ -46,6 +40,14 @@ docker run --rm \
   -v "$(pwd)/config":/app/src \
   -v "$(pwd)":/out \
   config-tool --env "$ENV" --output /out
+
+#check that all needed config files are dumped
+for f in blog.env mail.env mongodb.env; do
+  if [ ! -f $f ]; then
+    echo "$f file must exist" >&2
+    exit 1
+  fi
+done
 
 #make a tunnel
 ssh -fN -L 23750:127.0.0.1:23750 ec2-user@$host
