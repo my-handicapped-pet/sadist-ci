@@ -27,7 +27,6 @@ jobs:
       AWS_SECRET_KEY: ${{ secrets.AWS_SECRET_KEY }}
       GITHUB_ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
       DOCKER_ACCESS_TOKEN: ${{ secrets.DOCKER_ACCESS_TOKEN }}
-      DATABASE_URL: ${{ secrets.SADIST_DATABASE_URL_STAGING }}
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -42,7 +41,6 @@ jobs:
       run: |
         echo -e "${{ secrets.AWS_SSH_KEY }}" > aws_my_handicapped_pet
         echo -e "${{ secrets.AWS_SSH_KEY_PUB }}" > aws_my_handicapped_pet.pub
-        echo -e "${{ secrets.SADIST_DOT_ENV }}" > .env
 
     - name: Set up terraform CLI
       uses: hashicorp/setup-terraform@v3
