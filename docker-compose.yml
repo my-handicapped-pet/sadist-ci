@@ -41,7 +41,7 @@ services:
     env_file:
       - blog.env
     volumes:
-      - uploads:${UPLOAD_FOLDER}
+      - uploads:/uploads/
 
   blog-admin-app:
     image: myhandicappedpet/blog-admin-app
@@ -49,7 +49,7 @@ services:
     env_file:
       - blog.env
     volumes:
-      - uploads:${UPLOAD_FOLDER}
+      - uploads:/uploads/
 
   mysql:
     image: "mysql:8.0.33"
