@@ -52,3 +52,64 @@ config/
  ├── core.py        # orchestration
  └── cli.py         # entrypoint
 ```
+
+## CLI format
+
+```sh
+python cli.py --env <dev|staging|prod> [--configset <name>] [--provider ssm] [--prefix <path>] [--region <aws-region>] [--output <dir>]
+python cli.py --env <dev|staging|prod> [--configset <name>] --upload-file <file>
+python cli.py --env <dev|staging|prod> [--configset <name>] --upload-value <key>=<value>
+```
+
+### Arguments
+
+| Argument         | Required | Default | Description                                                                                                   |
+|------------------|----------|---|---------------------------------------------------------------------------------------------------------------|
+| `--env`          | yes      | — | Target environment: `dev`, `staging`, or `prod`                                                               |
+| `--configset`    | no       | — | Target configset. If not specified, all configsets are dumped. For uploading, will be asked if not specified. |
+| `--provider`     | no       | `ssm` | Configuration provider: `ssm` (AWS SSM Parameter Store)                                                       |
+| `--prefix`       | no       | `my-handicapped-pet/config` | SSM parameter path prefix                                                                                     |
+| `--region`       | no       | `$AWS_DEFAULT_REGION` | AWS region (SSM provider only)                                                                                |
+| `--output`       | no       | `.` (current dir) | Directory where `<configset>.env` files are written                                                           |
+| `--upload-file`  | no       | — | Path to a file to upload; all key=value pairs are written to the provider                                     |
+| `--upload-value` | no       | — | Upload a single value in the format `<key>=<value>`                                                           |
+
+### Examples
+
+Dump config for the `dev` environment using AWS SSM (default prefix, region from env):
+```sh
+python cli.py --env dev
+```
+
+Dump config for `prod` with an explicit region and custom output directory:
+```sh
+python cli.py --env prod --region eu-west-1 --output ./envfiles
+```
+
+Dump config for `staging` with a custom SSM prefix:
+```sh
+python cli.py --env staging --prefix my-handicapped-pet/config --region us-east-1 --output ./out
+```
+
+Upload an entire file to the provider for the `prod` environment (configset prompted if not given):
+```sh
+python cli.py --env prod --upload-file ./my-config.env --configset backend
+```
+
+Upload a single value to the provider (configset prompted if not given):
+```sh
+python cli.py --env dev --configset backend --upload-value DATABASE_URL=postgres://localhost/mydb
+```
+
+Each run writes one `<configset>.env` file per configset found in the provider, e.g.:
+```
+./out/backend.env
+./out/frontend.env
+```
+
+Each `.env` file contains `key=value` lines, sorted alphabetically:
+```dotenv
+DATABASE_URL=postgres://...
+SECRET_KEY=s3cr3t
+```
+
