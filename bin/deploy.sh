@@ -7,10 +7,12 @@ if [ -z $ENV ]; then
   echo "Environment (\$ENV) must be set" >&2
   exit 1
 fi
-if [ -z $DATABASE_URL ]; then
-  echo "Database connection string (\$DATABASE_URL) must be set" >&2
-  exit 1
-fi 
+for f in blog.env mail.env mongodb.env; do
+  if [ ! -f $f ]; then
+    echo "$f file must exist" >&2
+    exit 1
+  fi
+done
 
 #parameters
 host=$1
