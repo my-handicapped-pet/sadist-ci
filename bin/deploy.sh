@@ -35,11 +35,22 @@ cp $key.pub ~/.ssh/
 chmod 600 ~/.ssh/$key
 ssh-add ~/.ssh/$key
 
+#dump config (runs locally, before the remote tunnel is opened)
+docker build -t config-tool ./config
+docker run --rm \
+  -e AWS_ACCESS_KEY_ID="$AWS_ACCESS_KEY" \
+  -e AWS_SECRET_ACCESS_KEY="$AWS_SECRET_KEY" \
+  -e AWS_DEFAULT_REGION="$AWS_DEFAULT_REGION" \
+  -v "$(pwd)/config":/app/src \
+  -v "$(pwd)":/out \
+  config-tool --env "$ENV" --output /out
+
 #make a tunnel
 ssh -fN -L 23750:127.0.0.1:23750 ec2-user@$host
 export DOCKER_HOST=tcp://127.0.0.1:23750
 
 export COMPOSE_PROJECT_NAME=$ENV
+
 docker compose -f docker-compose.yml -f docker-compose."$ENV".yml pull
-docker run -i -e DATABASE_URL myhandicappedpet/webapp-flask python -m scripts.apply_migrations
+docker run -i --env-file mongodb.env myhandicappedpet/webapp-flask python -m scripts.apply_migrations
 docker compose -f docker-compose.yml -f docker-compose."$ENV".yml up -d --force-recreate

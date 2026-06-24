@@ -202,7 +202,8 @@ resource "null_resource" "docker-compose-up" {
     command = "./bin/deploy.sh ${aws_instance.my-handicapped-instance.public_dns}"
 
     environment = {
-      ENV         = var.env
+      ENV                = var.env
+      AWS_DEFAULT_REGION = var.region
     }
   }
 }
