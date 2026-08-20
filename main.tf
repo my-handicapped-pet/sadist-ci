@@ -91,7 +91,7 @@ resource "aws_security_group" "my-handicapped-security-group" {
     protocol    = "tcp"
     from_port   = 22
     to_port     = 22
-    cidr_blocks = ["190.113.102.96/32"]
+    cidr_blocks = ["190.113.0.0/16"]
   }
 
   # PuPI
