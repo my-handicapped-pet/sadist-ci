@@ -63,6 +63,12 @@ services:
       - "MYSQL_ROOT_PASSWORD=${DB_PASSWORD}"
       - "MYSQL_DATABASE=${DB_NAME}"
 
+  job-scraper:
+    image: myhandicappedpet/job-scraper
+    restart: unless-stopped
+    env_file:
+      - job-scraper.env
+
 volumes:
   chromedata:
   uploads:

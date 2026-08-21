@@ -30,5 +30,9 @@ locals {
       repo       = ["my-handicapped-pet/sadist-blog"]
       dockerfile = "./sadist-blog/Dockerfile-blog-admin"
     }
+    job-scraper = {
+      repo = ["my-handicapped-pet/job-scraper"]
+      dockerfile = "./job-scraper/Dockerfile"
+    }
   }
 }
