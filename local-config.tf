@@ -19,7 +19,7 @@ locals {
       dockerfile = "./sadist-proxy/Dockerfile-proxy"
     }
     webapp-map = {
-      repo = ["my-handicapped-pet/sadist-map"]
+      repo       = ["my-handicapped-pet/sadist-map"]
       dockerfile = "./sadist-map/Dockerfile-map"
     }
     blog-app = {
@@ -31,7 +31,7 @@ locals {
       dockerfile = "./sadist-blog/Dockerfile-blog-admin"
     }
     job-scraper = {
-      repo = ["my-handicapped-pet/job-scraper"]
+      repo       = ["my-handicapped-pet/job-scraper"]
       dockerfile = "./job-scraper/Dockerfile"
     }
   }
