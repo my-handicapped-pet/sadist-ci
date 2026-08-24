@@ -6,6 +6,10 @@ locals {
       repo       = ["my-handicapped-pet/sadist-be", "my-handicapped-pet/sadist-fe"]
       dockerfile = "./sadist-be/Dockerfile-flask"
     }
+    task-queue = {
+      repo       = ["my-handicapped-pet/sadist-be"]
+      dockerfile = "./sadist-be/Dockerfile-task-queue"
+    }
     webapp-nginx = {
       repo       = ["my-handicapped-pet/sadist-be"]
       dockerfile = "./sadist-be/Dockerfile-nginx"
