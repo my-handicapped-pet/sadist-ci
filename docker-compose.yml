@@ -10,6 +10,13 @@ services:
       - mongodb.env
       - mail.env
 
+  task-queue:
+    image: myhandicappedpet/task-queue
+    restart: unless-stopped
+    env_file:
+      - mongodb.env
+      - mail.env
+
   nginx:
     image: myhandicappedpet/webapp-nginx
     restart: unless-stopped
