@@ -9,6 +9,7 @@ services:
     env_file:
       - mongodb.env
       - mail.env
+      - telegram.env
 
   task-queue:
     image: myhandicappedpet/task-queue
@@ -16,6 +17,7 @@ services:
     env_file:
       - mongodb.env
       - mail.env
+      - telegram.env
 
   nginx:
     image: myhandicappedpet/webapp-nginx
